@@ -1,18 +1,19 @@
 const validateReqBodyData = (validationSchema) => {
   return async (req, res, next) => {
-    // extract new task data from req.body
     const newTaskData = req.body;
-    // validate new Task
-    try {
-      const validatedData = await validationSchema.validate(newTaskData);
-      req.body = validatedData;
-    } catch (error) {
-      //if validation fails, throw error
-      return res.status(400).send({ message: error.message });
-    }
 
-    // call next function
-    next();
+    try {
+      const validatedData = await validationSchema.validateAsync(newTaskData, {
+        abortEarly: false,
+      });
+      req.body = validatedData;
+      next();
+    } catch (error) {
+      return res.status(400).json({
+        message: "Data Validation Error",
+        errors: error.details.map((err) => err.message),
+      });
+    }
   };
 };
 
