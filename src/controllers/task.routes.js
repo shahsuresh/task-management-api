@@ -4,6 +4,7 @@ import validateReqBodyData from "../middleware/data.validation.middleware.js";
 import newTaskValidationSchema from "../validations/taskValidationSchema.js";
 import validateMongoIdFromReqParams from "../middleware/validateMongoID.middleware.js";
 import updateTaskStatusValidationSchema from "../validations/updateTaskStatusValidationSchema.js";
+import { listTaskValidationSchema } from "../validations/listTaskValidationSchema.js";
 
 const router = Router();
 
@@ -31,16 +32,74 @@ router.post(
 
 //# api to get all tasks list
 
-router.get("/task-list", async (req, res) => {
-  //get task list from db
-  const taskList = await Task.aggregate([
-    {
-      $match: {},
-    },
-  ]);
-  console.log(taskList);
-  return res.status(200).send({ tasks: taskList });
-});
+router.get(
+  "/task-list",
+  validateReqBodyData(listTaskValidationSchema),
+  async (req, res) => {
+    // extract pagination, Filtering & sorting data from req body
+    const { page, limit, status, createdDate, sortOrder } = req.body;
+
+    // console.log(page, limit);
+
+    //calculate skip and limit
+    const skip = (page - 1) * limit;
+    let match = {};
+
+    //filter based on status value
+    if (status) {
+      match = { status: status };
+    }
+
+    // filter based on created date
+    if (createdDate) {
+      //if created date, convert date into iso format
+      // and calculate endOfDay to match task created on this day
+
+      const startOfDay = new Date(createdDate);
+      // console.log(startOfDay);
+      const endOfDay = new Date(createdDate);
+      endOfDay.setUTCHours(23, 59, 59, 999);
+      // console.log(endOfDay);
+
+      // add filter rule based on both status value and createdAt date value
+      match = {
+        ...match,
+        createdAt: { $gte: startOfDay, $lte: endOfDay },
+      };
+    }
+    //sorting based on createdAt date
+    // 1=> Ascending, -1=> Descending
+    let order;
+    // if (sortOrder) {
+    order = sortOrder === "asc" ? 1 : -1;
+    // }
+    //get task list from db
+    const taskList = await Task.aggregate([
+      {
+        $match: match,
+      },
+      { $skip: skip },
+      { $limit: limit },
+      { $sort: { createdAt: order } },
+      {
+        $project: {
+          _id: 0,
+          title: 1,
+          description: 1,
+          status: 1,
+          createdAt: 1,
+        },
+      },
+    ]);
+
+    // if no task present in db, send this response
+    if (!taskList) {
+      return res.status(404).send({ message: "Not any task available" });
+    }
+    //send response with filtered/sorted task list
+    return res.status(200).send({ tasks: taskList });
+  }
+);
 
 //# api to Retrieve a specific task by its id
 
