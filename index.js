@@ -14,7 +14,7 @@ dbConnection();
 //register routes
 app.use("/api/tasks", taskRoutes);
 
-//assign port to the local server
+//assign port to the local server from .env file
 const PORT = process.env.PORT;
 
 //start the server
