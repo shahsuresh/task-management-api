@@ -1,5 +1,6 @@
 import Joi from "joi";
 
+//validation schema when creating new task
 const newTaskValidationSchema = Joi.object({
   title: Joi.string()
     .max(100)
@@ -15,7 +16,7 @@ const newTaskValidationSchema = Joi.object({
     .messages({
       "any.required": "Description is Required", // when field is missing
       "string.empty": "Description Field cannot be empty", // when it's an empty string ""
-      "string.max": "Description cannot exceed 1000 characters", // when feild exceeds characters limit
+      "string.max": "Description cannot exceed 1000 characters", // when field exceeds characters limit
     })
     .trim(),
   status: Joi.string()
