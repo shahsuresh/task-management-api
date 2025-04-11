@@ -5,7 +5,7 @@ const taskSchema = new mongoose.Schema(
   {
     title: {
       type: String,
-      default: "Untitled Task",
+      default: "Untitled Task model",
       maxlength: [100, "Title cannot be of more than 100 Characters"],
       trim: true,
     },
@@ -13,11 +13,10 @@ const taskSchema = new mongoose.Schema(
       type: String,
       required: [true, "Description is required"],
       trim: true,
-      maxlength: [1000, "Description cannot be of more than 1000 characters"],
+      maxlength: [1000, "Description cannot exceed 1000 characters"],
     },
     status: {
       type: String,
-      required: true,
       default: "Pending",
       enum: ["Pending", "In-Progress", "Completed"],
     },
