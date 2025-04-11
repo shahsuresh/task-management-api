@@ -13,9 +13,9 @@ const newTaskValidationSchema = Joi.object({
     .max(1000)
     .required()
     .messages({
-      "any.required": "Description is Required123", // when field is missing
+      "any.required": "Description is Required", // when field is missing
       "string.empty": "Description Field cannot be empty", // when it's an empty string ""
-      "string.max": "Description cannot exceed 1000 characters",
+      "string.max": "Description cannot exceed 1000 characters", // when feild exceeds characters limit
     })
     .trim(),
   status: Joi.string()
