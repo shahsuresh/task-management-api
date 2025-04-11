@@ -123,8 +123,34 @@ router.patch(
     //extract id from req params
     const taskId = req.params.id;
 
-    console.log(taskId);
-    return res.status(200).send({ taskID: taskId });
+    //find task with taskID
+
+    const task = await Task.findById(taskId);
+
+    // if task not found, throw error & exit
+    if (!task) {
+      return res.status(404).send({ message: "Task Not Found" });
+    }
+    try {
+      //extract new status from body
+      const { status } = req.body;
+
+      // update task with new status
+      await Task.updateOne({ _id: taskId }, { $set: { status } });
+
+      //updated status for sending response
+      task.status = status;
+
+      //send response
+      res
+        .status(200)
+        .send({ message: "Task Status Updated", Updated_task_Status: task });
+    } catch (error) {
+      //send error message
+      return res
+        .status(500)
+        .send({ message: " Error updating task Status", error: error.message });
+    }
   }
 );
 export default router;
