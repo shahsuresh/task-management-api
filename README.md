@@ -123,9 +123,7 @@ Method: PATCH Endpoint: /:id/status
 
 Method: DELETE Endpoint: /delete/:id
 
-## API Deployment
-
-The API is deployed on the following platform:
+## API Deployment Information
 
 - 🚀 ** API URL**: [`https://task-management-api-red.vercel.app/api/tasks`](https://task-management-api-red.vercel.app/api/tasks)
 - ☁️ **Hosted on**: Vercel
@@ -134,17 +132,17 @@ The API is deployed on the following platform:
 
 <div align="center">
   <h4>📸 Home Page</h4>
-<img src="./screenshots/browser1.png" alt="Home Page" width="800" height="400" />
+<img src="./screenshots/browser1.png" alt="Home Page" width="700" height="400" />
 </hr>
-<img src="./screenshots/browser2.png" alt="Home Page" width="800" height="400" />
+<img src="./screenshots/browser2.png" alt="Home Page" width="700" height="400" />
 <h4>📸 Screenshots from postman</h4>
-<img src="./screenshots/postman1.png" alt="Home Page" width="800" height="400" />
-<img src="./screenshots/postman2.png" alt="Home Page" width="800" height="400" />
-<img src="./screenshots/postman3.png" alt="Home Page" width="800" height="400" />
-<img src="./screenshots/postman4.png" alt="Home Page" width="800" height="400" />
-<img src="./screenshots/postman5.png" alt="Home Page" width="800" height="400" />
-<img src="./screenshots/postman6.png" alt="Home Page" width="800" height="400" />
-<img src="./screenshots/postman7.png" alt="Home Page" width="800" height="400" />
+<img src="./screenshots/postman1.png" alt="Home Page" width="700" height="400" />
+<img src="./screenshots/postman2.png" alt="Home Page" width="700" height="400" />
+<img src="./screenshots/postman3.png" alt="Home Page" width="700" height="400" />
+<img src="./screenshots/postman4.png" alt="Home Page" width="700" height="400" />
+<img src="./screenshots/postman5.png" alt="Home Page" width="700" height="400" />
+<img src="./screenshots/postman6.png" alt="Home Page" width="700" height="400" />
+<img src="./screenshots/postman7.png" alt="Home Page" width="700" height="400" />
 
 </div>
 
@@ -173,4 +171,4 @@ The API is deployed on the following platform:
 
 Suresh Sah
 
-#### Task Management API
+#### Task Management API7
