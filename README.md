@@ -1,7 +1,5 @@
 ![API Status](https://img.shields.io/badge/API-Live-brightgreen)
 
-- [Link](#https://task-management-api-red.vercel.app/api/tasks)
-
 # Task Management API
 
 **Task Management REST API** built using **Node.js**, **Express.js**, and **MongoDB**. It allows users to manage tasks efficiently by providing endpoints to create, retrieve, update, and delete tasks.
@@ -136,16 +134,17 @@ The API is deployed on the following platform:
 
 <div align="center">
   <h4>📸 Home Page</h4>
-<img src="./screenshots/browser1.png" alt="Home Page" width="600" height="400" />
+<img src="./screenshots/browser1.png" alt="Home Page" width="800" height="400" />
 </hr>
-<img src="./screenshots/browser2.png" alt="Home Page" width="600" height="400" />
-<img src="./screenshots/postman1.png" alt="Home Page" width="600" height="400" />
-<img src="./screenshots/postman2.png" alt="Home Page" width="600" height="400" />
-<img src="./screenshots/postman3.png" alt="Home Page" width="600" height="400" />
-<img src="./screenshots/postman4.png" alt="Home Page" width="600" height="400" />
-<img src="./screenshots/postman5.png" alt="Home Page" width="600" height="400" />
-<img src="./screenshots/postman6.png" alt="Home Page" width="600" height="400" />
-<img src="./screenshots/postman7.png" alt="Home Page" width="600" height="400" />
+<img src="./screenshots/browser2.png" alt="Home Page" width="800" height="400" />
+<h4>📸 Screenshots from postman</h4>
+<img src="./screenshots/postman1.png" alt="Home Page" width="800" height="400" />
+<img src="./screenshots/postman2.png" alt="Home Page" width="800" height="400" />
+<img src="./screenshots/postman3.png" alt="Home Page" width="800" height="400" />
+<img src="./screenshots/postman4.png" alt="Home Page" width="800" height="400" />
+<img src="./screenshots/postman5.png" alt="Home Page" width="800" height="400" />
+<img src="./screenshots/postman6.png" alt="Home Page" width="800" height="400" />
+<img src="./screenshots/postman7.png" alt="Home Page" width="800" height="400" />
 
 </div>
 
