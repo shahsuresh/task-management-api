@@ -11,6 +11,7 @@
     "dev": "env-cmd -f .env nodemon index.js"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "env-cmd": "^10.1.0",
     "express": "^5.1.0",
     "joi": "^17.13.3",
