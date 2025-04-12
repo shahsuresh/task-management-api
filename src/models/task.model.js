@@ -19,6 +19,7 @@ const taskSchema = new mongoose.Schema(
       type: String,
       default: "Pending",
       enum: ["Pending", "In-Progress", "Completed"],
+      index: true, // for filtering by status
     },
     // createdAt: {
     //   type: Date,
