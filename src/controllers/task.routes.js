@@ -7,7 +7,11 @@ import updateTaskStatusValidationSchema from "../validations/updateTaskStatusVal
 import { listTaskValidationSchema } from "../validations/listTaskValidationSchema.js";
 
 const router = Router();
+//# Home Route
 
+router.get("/", (req, res) => {
+  return res.send("Welcome to Task Management API");
+});
 //# api to create new task
 
 router.post(
