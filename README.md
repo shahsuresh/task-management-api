@@ -1,3 +1,7 @@
+![API Status](https://img.shields.io/badge/API-Live-brightgreen)
+
+- [Link](#https://task-management-api-red.vercel.app/api/tasks)
+
 # Task Management API
 
 **Task Management REST API** built using **Node.js**, **Express.js**, and **MongoDB**. It allows users to manage tasks efficiently by providing endpoints to create, retrieve, update, and delete tasks.
@@ -120,6 +124,22 @@ Method: PATCH Endpoint: /:id/status
 #### 📌 Delete a Task
 
 Method: DELETE Endpoint: /delete/:id
+
+## API Deployment
+
+The API is deployed on the following platform:
+
+- 🚀 ** API URL**: [`https://task-management-api-red.vercel.app/api/tasks`](https://task-management-api-red.vercel.app/api/tasks)
+- ☁️ **Hosted on**: Vercel
+
+## 📸Screenshots
+
+<div align="center">
+  <h4>📸 Home Page</h4>
+<img src="./screenshots/browser1.png" alt="Home Page" width="600" height="350" style="border-radius: 10px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1);" />
+</hr>
+
+</div>
 
 ## ✅ Validation & Error Handling
 
