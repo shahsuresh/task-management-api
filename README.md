@@ -136,8 +136,9 @@ The API is deployed on the following platform:
 
 <div align="center">
   <h4>📸 Home Page</h4>
-<img src="./screenshots/browser1.png" alt="Home Page" width="600" height="350" style="border-radius: 10px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1);" />
+<img src="./screenshots/browser1.png" alt="Home Page" width="600" height="400" />
 </hr>
+<img src="./screenshots/browser2.png" alt="Home Page" width="600" height="400" />
 
 </div>
 
