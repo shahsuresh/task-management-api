@@ -1,12 +1,15 @@
 import express from "express";
 import dbConnection from "./src/db/dbConnection.js";
 import taskRoutes from "./src/controllers/task.routes.js";
-
+import cors from "cors";
 // to initialize the express app
 const app = express();
 
 //to make app understand json
 app.use(express.json());
+
+//allow cross-origin
+app.use(cors());
 
 //database connection
 dbConnection();
