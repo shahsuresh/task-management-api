@@ -73,10 +73,10 @@ router.get(
     }
     //sorting based on createdAt date
     // 1=> Ascending, -1=> Descending
-    let order;
-    // if (sortOrder) {
-    order = sortOrder === "asc" ? 1 : -1;
-    // }
+    // Default to descending order (newest first)
+
+    let order = sortOrder === "asc" ? 1 : -1;
+
     //get task list from db
     const taskList = await Task.aggregate([
       {
@@ -112,7 +112,7 @@ router.get("/:id", validateMongoIdFromReqParams, async (req, res) => {
   const taskId = req.params.id;
 
   //find task with that id
-  const task = await Task.findOne({ _id: taskId });
+  const task = await Task.findOne({ _id: taskId }).select("-_id");
 
   //if not task available with that id, throw error
   if (!task) {
