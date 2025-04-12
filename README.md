@@ -139,6 +139,13 @@ The API is deployed on the following platform:
 <img src="./screenshots/browser1.png" alt="Home Page" width="600" height="400" />
 </hr>
 <img src="./screenshots/browser2.png" alt="Home Page" width="600" height="400" />
+<img src="./screenshots/postman1.png" alt="Home Page" width="600" height="400" />
+<img src="./screenshots/postman2.png" alt="Home Page" width="600" height="400" />
+<img src="./screenshots/postman3.png" alt="Home Page" width="600" height="400" />
+<img src="./screenshots/postman4.png" alt="Home Page" width="600" height="400" />
+<img src="./screenshots/postman5.png" alt="Home Page" width="600" height="400" />
+<img src="./screenshots/postman6.png" alt="Home Page" width="600" height="400" />
+<img src="./screenshots/postman7.png" alt="Home Page" width="600" height="400" />
 
 </div>
 
