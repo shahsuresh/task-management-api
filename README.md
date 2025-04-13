@@ -156,19 +156,32 @@ Method: DELETE Endpoint: /delete/:id
 
 ## 📁 Folder Structure
 
-├── index.js  
-├── package.json  
-├── .env  
-└── src
-├── controllers
-│ └── task.routes.js  
- ├── db
-│ └── dbConnection.js  
- ├── middleware  
- └── validations
+task-management-api/
+├── .env
+├── index.js
+├── package.json
+├── README.md
+└── src/
+├── controllers/
+│ └── task.routes.js
+│
+├── db/
+│ └── dbConnection.js
+│
+├── middleware/
+│ ├── data.validation.middleware.js
+│ └── validateMongoID.middleware.js
+│
+├── models/
+│ └── task.model.js
+│
+└── validations/
+├── listTaskValidationSchema.js
+├── taskValidationSchema.js
+└── updateTaskStatusValidationSchema.js
 
 ## 👨‍💻 Author
 
 Suresh Sah
 
-#### Task Management API7
+#### Task Management API
