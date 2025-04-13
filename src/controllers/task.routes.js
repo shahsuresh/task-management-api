@@ -5,6 +5,9 @@ import newTaskValidationSchema from "../validations/taskValidationSchema.js";
 import validateMongoIdFromReqParams from "../middleware/validateMongoID.middleware.js";
 import updateTaskStatusValidationSchema from "../validations/updateTaskStatusValidationSchema.js";
 import { listTaskValidationSchema } from "../validations/listTaskValidationSchema.js";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc.js";
+dayjs.extend(utc);
 
 const router = Router();
 //# Home Route
@@ -43,8 +46,6 @@ router.get(
     // extract pagination, Filtering & sorting data from req body
     const { page, limit, status, createdDate, sortOrder } = req.body;
 
-    // console.log(page, limit);
-
     //calculate skip and limit
     const skip = (page - 1) * limit;
     let match = {};
@@ -59,11 +60,12 @@ router.get(
       //if created date, convert date into iso format
       // and calculate endOfDay to match task created on this day
 
-      const startOfDay = new Date(createdDate);
-      // console.log(startOfDay);
-      const endOfDay = new Date(createdDate);
-      endOfDay.setUTCHours(23, 59, 59, 999);
-      // console.log(endOfDay);
+      const startOfDay = dayjs.utc(createdDate).startOf("day").toDate();
+
+      const endOfDay = dayjs.utc(createdDate).endOf("day").toDate();
+
+      // console.log("Start Day:", startOfDay);
+      // console.log("End Day:", endOfDay);
 
       // add filter rule based on both status value and createdAt date value
       match = {
@@ -73,7 +75,7 @@ router.get(
     }
     //sorting based on createdAt date
     // 1=> Ascending, -1=> Descending
-    // Default to descending order (newest first)
+    // Default is in descending order so newest data first
 
     let order = sortOrder === "asc" ? 1 : -1;
 
@@ -82,9 +84,9 @@ router.get(
       {
         $match: match,
       },
+      { $sort: { createdAt: order } },
       { $skip: skip },
       { $limit: limit },
-      { $sort: { createdAt: order } },
       {
         $project: {
           _id: 0,
@@ -96,10 +98,6 @@ router.get(
       },
     ]);
 
-    // if no task present in db, send this response
-    if (!taskList) {
-      return res.status(404).send({ message: "Not any task available" });
-    }
     //send response with filtered/sorted task list
     return res.status(200).send({ tasks: taskList });
   }
@@ -112,7 +110,7 @@ router.get("/:id", validateMongoIdFromReqParams, async (req, res) => {
   const taskId = req.params.id;
 
   //find task with that id
-  const task = await Task.findOne({ _id: taskId }).select("-_id");
+  const task = await Task.findOne({ _id: taskId }).select("-_id").lean();
 
   //if not task available with that id, throw error
   if (!task) {
@@ -130,7 +128,7 @@ router.delete("/delete/:id", validateMongoIdFromReqParams, async (req, res) => {
   const taskId = req.params.id;
 
   //find task with that id
-  const task = await Task.findOne({ _id: taskId });
+  const task = await Task.findOne({ _id: taskId }).lean();
 
   //if not task available with that id, throw error
   if (!task) {
@@ -155,7 +153,7 @@ router.put(
     const taskId = req.params.id;
 
     //find task with that id
-    const task = await Task.findOne({ _id: taskId });
+    const task = await Task.findOne({ _id: taskId }).lean();
 
     //if not task available with that id, throw error
     if (!task) {
@@ -166,7 +164,6 @@ router.put(
 
     // extract new data from req.body
     const updatedTaskData = req.body;
-    // console.log(updatedTaskData);
 
     // update task
     await Task.updateOne({ _id: taskId }, { $set: { ...updatedTaskData } });
@@ -188,7 +185,7 @@ router.patch(
 
     //find task with taskID
 
-    const task = await Task.findById(taskId);
+    const task = await Task.findById(taskId).lean();
 
     // if task not found, throw error & exit
     if (!task) {
