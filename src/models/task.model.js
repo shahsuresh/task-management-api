@@ -5,7 +5,7 @@ const taskSchema = new mongoose.Schema(
   {
     title: {
       type: String,
-      default: "Untitled Task model",
+      default: "Untitled Task",
       maxlength: [100, "Title cannot be of more than 100 Characters"],
       trim: true,
     },
